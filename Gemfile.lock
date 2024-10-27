@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    liquid (5.5.1)
+    mini_portile2 (2.8.7)
+    nokogiri (1.15.6)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    racc (1.8.1)
+    yaml (0.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  liquid (~> 5.5)
+  nokogiri (~> 1.15)
+  yaml (~> 0.3)
+
+BUNDLED WITH
+   2.1.4

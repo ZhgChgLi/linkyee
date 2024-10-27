@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <img src="{{ avatar }}" alt="Profile Picture" class="profile-pic" />
+      <h1 class="name">{{ name }}</h1>
+      <p class="description">{{ tagline }}</p>
+    </div>
+
+    <div class="links">
+      {% for item in links %}
+        {% assign link = item.link %}
+        <a href="{{ link.url }}" target="{{ link.target }}" class="link-button" alt="{{ link.alt }}">
+          <i class="{{ link.icon }}"></i> {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="button-container">
+      <div class="button-group">
+        {% for item in socials %}
+          {% assign social = item.social %}
+          <a href="{{ social.url }}" target="{{ social.target }}" class="icon-button" alt="{{ social.alt }}">
+            <i class="{{ social.icon }}"></i>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <footer class="footer">
+      {{ footer }}
+
+      <div class="copyright">{{ copyright }}</div>
+    </footer>
+  </div>
+  <script src="fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  {% if google_analytics_id %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ google_analytics_id }}');
+    </script>
+  {% endif %}
+  <script src="./scripts.js"></script>
+</body>
+</html>

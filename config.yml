@@ -1,0 +1,110 @@
+# Site Configuration
+
+# Theme, mapped to the directory: ./theme/xxxx
+theme: default
+
+# HTML Language setting
+lang: "en"
+
+# Plugins, implemented in ./plugins/PLUGIN_NAME
+# Use {{ vars.PLUGIN_NAME }} in the settings below
+
+plugins:
+  # Automatically fetch Medium follower count
+  - MediumFollowersCountPlugin:
+      username: zhgchgli
+
+# Google Analytics tracking id
+google_analytics_id:
+
+# HTML Title
+title: "ZhgChgLi's Links"
+
+# Avatar image path
+avatar: "./images/profile.jpeg"
+
+# Name section text
+name: "@zhgchgli"
+
+# Tagline section text
+tagline: >-
+    An iOS, web, and automation developer from Taiwan 🇹🇼 who also loves sharing, traveling, and writing.
+
+# List of links
+# icon: Use Font Awesome icons (https://fontawesome.com/search?o=r&m=free)
+# title: The displayed text for the link
+# url: The URL of the link
+# alt: Alternative text for accessibility
+# target: `_blank` opens in a new tab, `_self` opens in the same frame
+links:
+  - link:
+      icon: "fa-brands fa-medium"
+      title: "Tech Blog <span class='link-button-text'>({{vars.MediumFollowersCountPlugin}} Followers)</span>"
+      url: "https://blog.zhgchg.li"
+      alt: "ZhgChgLi's Tech Blog"
+      target: "_blank"
+  - link:
+      icon: "fa-brands fa-medium"
+      title: "Travelog <span class='link-button-text'>({{vars.MediumFollowersCountPlugin}} Followers)</span>"
+      url: "https://medium.com/ztravel"
+      alt: "ZhgChgLi's Travelog"
+      target: "_blank"
+  - link:
+      icon: "fa-solid fa-rss"
+      title: "Website"
+      url: "https://zhgchg.li/"
+      alt: "ZhgChgLi's Website"
+      target: "_blank"
+  - link:
+      icon: "fa-brands fa-instagram"
+      title: "Instagram"
+      url: "https://www.instagram.com/zhgchgli/"
+      alt: "ZhgChgLi's Instagram"
+      target: "_blank"
+
+# List of social media links
+# icon: Use Font Awesome icons (https://fontawesome.com/search?o=r&m=free)
+# title: The displayed title for the social media link
+# url: The URL of the social media link
+# alt: Alternative text for accessibility
+# target: _blank opens in a new tab, _self opens in the same frame
+socials:
+  - social:
+      icon: "fa-brands fa-medium"
+      url: "https://blog.zhgchg.li"
+      title: "ZhgChgLi's Medium"
+      alt: "ZhgChgLi's Medium"
+      target: "_blank"
+  - social:
+      icon: "fa-brands fa-github"
+      url: "https://github.com/ZhgChgLi"
+      title: "ZhgChgLi's GitHub"
+      alt: "ZhgChgLi's GitHub"
+      target: "_blank"
+  - social:
+      icon: "fa-brands fa-twitter"
+      url: "https://twitter.com/zhgchgli"
+      title: "ZhgChgLi's Twitter"
+      alt: "ZhgChgLi's Twitter"
+      target: "_blank"
+  - social:
+      icon: "fa-brands fa-linkedin"
+      url: "https://www.linkedin.com/in/zhgchgli/"
+      title: "ZhgChgLi's LinkedIn"
+      alt: "ZhgChgLi's LinkedIn"
+      target: "_blank"
+  - social:
+      icon: "fa-solid fa-envelope"
+      url: "mailto:zhgchgli@gmail.com"
+      title: "Email: zhgchgli@gmail.com"
+      alt: "zhgchgli@gmail.com"
+      target: "_blank"
+
+# Footer text
+footer: >
+    Welcome to my website! Follow me on Medium or GitHub, or stay connected on Instagram or LinkedIn.
+
+# Footer copyright message
+# Linkyee is a 100% free, open-source project—feel free to modify the copyright message as you like. :)
+copyright: >
+  © 2024  <a href="https://zhgchg.li" target="_blank">ZhgChgLi</a>. Powered by <a href="https://github.com/ZhgChgLi/linkyee" target="_blank">linkyee</a>
