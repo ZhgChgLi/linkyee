@@ -107,9 +107,6 @@ plugins:
 # Google Analytics tracking id
 google_analytics_id:
 
-# Google Analytics tracking id
-google_analytics_id:
-
 # HTML Title
 title: "ZhgChgLi's Links"
 
@@ -180,6 +177,33 @@ links:
       alt: "linkyee is a fully customized, open-source LinkTree alternative deployed directly on GitHub Pages."
       title: "linkyee is a fully customized, open-source LinkTree alternative deployed directly on GitHub Pages."
       target: "_blank"
+
+# Categorized format (recommended)
+# - category: "Projects"
+#   links:
+#       - link:
+#             icon: "fa-solid fa-rss"
+#             text: "Your Project"
+#             url: "https://your-project.cc/"
+#             alt: "Your Project"
+#             title: "Your Project"
+#             target: "_blank"
+#       - link:
+#             icon: "fa-brands fa-github"
+#             text: "Your GitHub"
+#             url: "https://github.com/YourGithub/"
+#             title: "Your GitHub"
+#             alt: "Your Github"
+#             target: "_blank"
+# - category: "Personal"
+#   links:
+#       - link:
+#             icon: "fa-solid fa-rss"
+#             text: "Your Portfolio"
+#             url: "https://portfolio.your-site.cc/"
+#             alt: "Your Portfolio"
+#             title: "Your Portfolio"
+#             target: "_blank"
 
 
 # List of social media links

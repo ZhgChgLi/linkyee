@@ -51,12 +51,26 @@
     </div>
 
     <div class="links">
-      {% for item in links %}
-        {% assign link = item.link %}
-        <a href="{{ link.url }}" target="{{ link.target }}" class="link-button" alt="{{ link.alt }}" title="{{ link.title }}">
-          <i class="{{ link.icon }}"></i> {{ link.text }}
-        </a>
-      {% endfor %}
+      {% if link_categories %}
+        {% for category in link_categories %}
+          {% if category.name %}
+            <h2 class="category-title">{{ category.name }}</h2>
+          {% endif %}
+          {% for item in category.links %}
+            {% assign link = item.link %}
+            <a href="{{ link.url }}" target="{{ link.target }}" class="link-button" alt="{{ link.alt }}" title="{{ link.title }}">
+              <i class="{{ link.icon }}"></i> {{ link.text }}
+            </a>
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% for item in links %}
+          {% assign link = item.link %}
+          <a href="{{ link.url }}" target="{{ link.target }}" class="link-button" alt="{{ link.alt }}" title="{{ link.title }}">
+            <i class="{{ link.icon }}"></i> {{ link.text }}
+          </a>
+        {% endfor %}
+      {% endif %}
     </div>
 
     <div class="button-container">
