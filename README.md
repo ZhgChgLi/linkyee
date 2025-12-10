@@ -269,7 +269,7 @@ If you don’t need scheduled redeployment, simply delete the schedule block.
 
 You can set a custom GitHub Pages domain, such as my own: [https://link.zhgchg.li](https://link.zhgchg.li).
 
-Follow [my tutorial for domain binding.](https://en.zhgchg.li/posts/483af5d93297/) If you’d like, you can [purchase a domain through my Namecheap referral](https://namecheap.pxf.io/P0jdZQ) link—I’ll earn a small commission, which will help me continue contributing to open-source projects.
+Follow [my tutorial for domain binding.](https://zhgchg.li/posts/zrealm-dev/en/github-pages-custom-domain-setup-replace-github-io-with-your-own-domain-483af5d93297/) If you’d like, you can [purchase a domain through my Namecheap referral](https://namecheap.pxf.io/P0jdZQ) link—I’ll earn a small commission, which will help me continue contributing to open-source projects.
 
 ---
 
