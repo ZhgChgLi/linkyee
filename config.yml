@@ -9,11 +9,8 @@ lang: "en"
 # Plugins, implemented in ./plugins/PLUGIN_NAME
 # Use {{ vars.PLUGIN_NAME }} in the settings below
 
-# The output of the plugin can be used below, e.g., {{vars.MediumFollowersCountPlugin}}
+# The output of the plugin can be used below, e.g., {{vars.GithubRepoStarsCountPlugin}}
 plugins:
-  # Automatically fetch Medium follower count
-  - MediumFollowersCountPlugin:
-      username: zhgchgli
   # Automatically fetch Github repo star count
   - GithubRepoStarsCountPlugin:
       - ZhgChgLi/ZMarkupParser
@@ -47,14 +44,14 @@ tagline: >-
 links:
   - link:
       icon: "fa-brands fa-medium"
-      text: "Tech Blog <span class='link-button-text'>({{vars.MediumFollowersCountPlugin}} Followers)</span>"
+      text: "Tech Blog <span class='link-button-text'>(100+ Posts)</span>"
       url: "https://blog.zhgchg.li"
       alt: "ZhgChgLi's Tech Blog"
       title: "ZhgChgLi's Tech Blog"
       target: "_blank"
   - link:
       icon: "fa-brands fa-medium"
-      text: "Travelog <span class='link-button-text'>({{vars.MediumFollowersCountPlugin}} Followers)</span>"
+      text: "Travelog <span class='link-button-text'>(10+ Posts)</span>"
       url: "https://medium.com/ztravel"
       alt: "ZhgChgLi's Travelog"
       title: "ZhgChgLi's Travelog"
