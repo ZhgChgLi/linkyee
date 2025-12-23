@@ -64,12 +64,45 @@ end
 
 
 if !settings["links"].nil?
-  settings["links"].each_with_index do |link, index|
-    settings["links"][index]["link"]["icon"] = Liquid::Template.parse(settings["links"][index]["link"]["icon"]).render(settings)
-    settings["links"][index]["link"]["url"] = Liquid::Template.parse(settings["links"][index]["link"]["url"]).render(settings)
-    settings["links"][index]["link"]["alt"] = Liquid::Template.parse(settings["links"][index]["link"]["alt"]).render(settings)
-    settings["links"][index]["link"]["title"] = Liquid::Template.parse(settings["links"][index]["link"]["title"]).render(settings)
-    settings["links"][index]["link"]["text"] = Liquid::Template.parse(settings["links"][index]["link"]["text"]).render(settings)
+  # Check if links are categorized or flat
+  if settings["links"].first && settings["links"].first["category"]
+    # Categorized format: process categories
+    settings["link_categories"] = []
+    settings["links"].each do |category_item|
+      category_name = category_item["category"]
+      category_links = category_item["links"] || []
+      
+      # Process each link in the category
+      processed_links = []
+      category_links.each_with_index do |link, index|
+        processed_link = link["link"].dup
+        processed_link["icon"] = Liquid::Template.parse(processed_link["icon"]).render(settings)
+        processed_link["url"] = Liquid::Template.parse(processed_link["url"]).render(settings)
+        processed_link["alt"] = Liquid::Template.parse(processed_link["alt"]).render(settings)
+        processed_link["title"] = Liquid::Template.parse(processed_link["title"]).render(settings)
+        processed_link["text"] = Liquid::Template.parse(processed_link["text"]).render(settings)
+        processed_links << {"link" => processed_link}
+      end
+      
+      settings["link_categories"] << {
+        "name" => category_name,
+        "links" => processed_links
+      }
+    end
+  else
+    # Flat format: backward compatibility - convert to uncategorized
+    settings["links"].each_with_index do |link, index|
+      settings["links"][index]["link"]["icon"] = Liquid::Template.parse(settings["links"][index]["link"]["icon"]).render(settings)
+      settings["links"][index]["link"]["url"] = Liquid::Template.parse(settings["links"][index]["link"]["url"]).render(settings)
+      settings["links"][index]["link"]["alt"] = Liquid::Template.parse(settings["links"][index]["link"]["alt"]).render(settings)
+      settings["links"][index]["link"]["title"] = Liquid::Template.parse(settings["links"][index]["link"]["title"]).render(settings)
+      settings["links"][index]["link"]["text"] = Liquid::Template.parse(settings["links"][index]["link"]["text"]).render(settings)
+    end
+    # Convert flat links to categorized format for template consistency
+    settings["link_categories"] = [{
+      "name" => nil,
+      "links" => settings["links"]
+    }]
   end
 end
 
