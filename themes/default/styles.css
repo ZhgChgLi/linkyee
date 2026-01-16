@@ -59,6 +59,19 @@ a {
   margin-top: 10px;
 }
 
+.category-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+.category-title:first-child {
+  margin-top: 0;
+}
+
 .link-button {
   display: inline-flex;
   align-items: center;
@@ -169,5 +182,9 @@ a {
 
   .link-button-text {
     color: #8b949e;
+  }
+
+  .category-title {
+    color: #c9d1d9;
   }
 }
