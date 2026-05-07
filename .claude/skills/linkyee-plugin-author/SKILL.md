@@ -115,10 +115,18 @@ When the request is close to one of these, read it before writing the new file:
 |---|---|
 | GitHub-style scraped count | `plugins/GithubRepoStarsCountPlugin.rb` (Nokogiri scrape) |
 | JSON API hitting a public endpoint | `plugins/NpmPackageDownloadsPlugin.rb` |
-| RSS/Atom feed parsing | `plugins/RssFeedLatestPostPlugin.rb` |
+| RSS/Atom feed parsing (generic) | `plugins/RssFeedLatestPostPlugin.rb` |
+| RSS/Atom for a specific platform with an alias-map config | `plugins/YouTubeChannelLatestVideoPlugin.rb` |
 | Public XRPC / REST follower count | `plugins/BlueskyFollowersCountPlugin.rb` |
 | Per-instance API (handle parsing) | `plugins/MastodonFollowersCountPlugin.rb` |
 | HTML scrape with regex fallback | `plugins/DevToFollowersCountPlugin.rb` |
+| Multi-field hash output per key | `plugins/GitHubUserStatsPlugin.rb` |
+| Nested-key JSON extraction (`dig`) | `plugins/PyPiPackageDownloadsPlugin.rb`, `plugins/CratesIoDownloadsPlugin.rb` |
+| API where `null` body means "user not found" | `plugins/HackerNewsKarmaPlugin.rb` |
+| API returning gzipped responses (handled transparently by Net::HTTP) | `plugins/StackOverflowReputationPlugin.rb` |
+| Strict User-Agent + path-with-slash encoding | `plugins/DockerHubPullsPlugin.rb` |
+| Username normalization (strip `@`, `u/`, etc.) | `plugins/RedditKarmaPlugin.rb` |
+| Ruby gem registry parallel to npm | `plugins/RubyGemsDownloadsPlugin.rb` |
 | Pure-logic / no network | `plugins/CountdownPlugin.rb` |
 
 ## Workflow you should follow
