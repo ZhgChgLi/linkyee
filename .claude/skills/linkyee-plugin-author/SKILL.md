@@ -120,14 +120,30 @@ When the request is close to one of these, read it before writing the new file:
 | Public XRPC / REST follower count | `plugins/BlueskyFollowersCountPlugin.rb` |
 | Per-instance API (handle parsing) | `plugins/MastodonFollowersCountPlugin.rb` |
 | HTML scrape with regex fallback | `plugins/DevToFollowersCountPlugin.rb` |
-| Multi-field hash output per key | `plugins/GitHubUserStatsPlugin.rb` |
-| Nested-key JSON extraction (`dig`) | `plugins/PyPiPackageDownloadsPlugin.rb`, `plugins/CratesIoDownloadsPlugin.rb` |
+| Multi-field hash output per key | `plugins/GitHubUserStatsPlugin.rb`, `plugins/AppStoreRatingPlugin.rb`, `plugins/LichessRatingPlugin.rb` |
+| Nested-key JSON extraction (`dig`) | `plugins/PyPiPackageDownloadsPlugin.rb`, `plugins/CratesIoDownloadsPlugin.rb`, `plugins/PackagistDownloadsPlugin.rb` |
 | API where `null` body means "user not found" | `plugins/HackerNewsKarmaPlugin.rb` |
 | API returning gzipped responses (handled transparently by Net::HTTP) | `plugins/StackOverflowReputationPlugin.rb` |
-| Strict User-Agent + path-with-slash encoding | `plugins/DockerHubPullsPlugin.rb` |
+| Strict User-Agent + path-with-slash encoding | `plugins/DockerHubPullsPlugin.rb`, `plugins/PackagistDownloadsPlugin.rb` |
 | Username normalization (strip `@`, `u/`, etc.) | `plugins/RedditKarmaPlugin.rb` |
 | Ruby gem registry parallel to npm | `plugins/RubyGemsDownloadsPlugin.rb` |
+| GitLab-style URL-encoded project path | `plugins/GitlabRepoStarsCountPlugin.rb` |
+| Date-range arithmetic + per-item summation | `plugins/WikipediaPageViewsPlugin.rb` |
+| Lang/region prefix parsing (`zh:Article`) | `plugins/WikipediaPageViewsPlugin.rb` |
+| Filtered count over a JSON array body | `plugins/OpenCollectiveBackersPlugin.rb` |
+| Multi-key extraction from a deeply nested object | `plugins/HomebrewFormulaInstallsPlugin.rb` (`analytics.install.30d.<name>`) |
+| Float-typed return value with rounding | `plugins/AppStoreRatingPlugin.rb` |
 | Pure-logic / no network | `plugins/CountdownPlugin.rb` |
+
+## Out-of-scope sources
+
+Don't try to build plugins for these unless the user has told you they have credentials or are willing to commit a token to the repo:
+
+- **OAuth required**: Spotify, Twitch, Strava, Steam, Patreon, Trakt, LinkedIn, GitHub GraphQL (sponsors/contributions counts), Google APIs
+- **Login walls or aggressive anti-scraping**: Instagram, TikTok, Threads, Google Scholar
+- **Deprecated public endpoints**: Last.fm RSS, Twitter/X public follower counts
+
+If the user asks for one of the above, suggest the closest already-covered alternative (RSS feed for the platform, a different account stat, etc.) before agreeing to wire up secrets.
 
 ## Workflow you should follow
 
