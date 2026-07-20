@@ -1,0 +1,21 @@
+services:
+  linkyee:
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      REBUILD_INTERVAL: ${REBUILD_INTERVAL:-86400}
+      SERVER_PORT: 8080
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - plugin-cache:/app/.linkyee-cache
+    healthcheck:
+      test: ["CMD-SHELL", "ruby -r net/http -r uri -e 'exit(Net::HTTP.get_response(URI(\"http://127.0.0.1:8080/\")).is_a?(Net::HTTPSuccess) ? 0 : 1)'"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 30s
+
+volumes:
+  plugin-cache:

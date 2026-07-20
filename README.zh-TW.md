@@ -293,6 +293,24 @@ build 失敗時（例如 Liquid 引用錯了），watcher 會印錯誤訊息但�
 - Ruby（一次性 `bundle install` 抓 `liquid` 與 `nokogiri`）
 - Python 3（或 Ruby）給 `preview.sh` 起的靜態檔案 server
 
+## 容器部署
+
+使用 Docker Compose 建置並執行產生的靜態網站：
+
+```bash
+docker compose up -d --build
+```
+
+預設服務監聽在 `8080`。可用 `PORT` 覆寫連接埠，並設定
+`REBUILD_INTERVAL`（秒）控制 plugin 資料重新建置的間隔：
+
+```bash
+PORT=8081 REBUILD_INTERVAL=3600 docker compose up -d --build
+```
+
+image 內含完整應用程式原始碼。plugin cache 使用具名 Docker volume 持久化，
+產生的網站輸出則保留在容器內。
+
 ---
 
 ## 自訂網域 ❤️❤️❤️
