@@ -16,6 +16,14 @@
   --accent-2: oklch(58% 0.13 145);
   --card: #ffffff;
   --shadow: 0 1px 0 rgba(26, 24, 21, 0.06), 0 8px 24px -16px rgba(26, 24, 21, 0.18);
+  --language-switcher-bg: var(--card);
+  --language-switcher-fg: var(--ink);
+  --language-switcher-border: var(--rule);
+  --language-switcher-hover: var(--bg-2);
+  --language-switcher-active-bg: var(--rule-strong);
+  --language-switcher-active-fg: var(--bg);
+  --language-switcher-focus: var(--accent);
+  --language-switcher-shadow: var(--shadow);
 }
 
 /* Dark mode. Auto-switches via system appearance unless pinned via

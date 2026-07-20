@@ -7,6 +7,14 @@
   --accent: #8b1a1a;
   --serif: 'Iowan Old Style', 'Palatino Linotype', 'Charter', 'Georgia', 'Times New Roman', serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --language-switcher-bg: var(--bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--rule);
+  --language-switcher-hover: var(--hover);
+  --language-switcher-active-bg: var(--accent);
+  --language-switcher-active-fg: var(--bg);
+  --language-switcher-focus: var(--accent);
+  --language-switcher-shadow: 0 5px 18px rgb(26 24 21 / 14%);
 }
 
 /* Dark mode. Auto-switches via system appearance unless the user pins

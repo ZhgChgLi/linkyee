@@ -8,6 +8,14 @@
   --accent-soft: #fde4d8;
   --shadow: 0 2px 0 rgba(45, 36, 25, 0.04), 0 8px 24px rgba(45, 36, 25, 0.06);
   --sans: 'Nunito', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --language-switcher-bg: var(--paper);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--rule);
+  --language-switcher-hover: var(--accent-soft);
+  --language-switcher-active-bg: var(--accent);
+  --language-switcher-active-fg: var(--paper);
+  --language-switcher-focus: var(--accent);
+  --language-switcher-shadow: var(--shadow);
 }
 
 /* Dark mode. Auto-switches via system appearance unless pinned via

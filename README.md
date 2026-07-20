@@ -86,6 +86,39 @@ copyright: "© 2026 You."
 
 The shipped [`config.yml`](./config.yml) is a fully working example that exercises **every built-in plugin** — read it as the canonical reference. Edit fields in place, push, wait for GitHub Actions to rebuild, refresh.
 
+### Multi-language sites
+
+Configure `i18n` to render one static site for each locale. The root page
+chooses a saved or browser-matching locale, then falls back to
+`default_locale`.
+
+```yaml
+i18n:
+  default_locale: en
+  locales:
+    en: locales/en.yml
+    es: locales/es.yml
+```
+
+Each locale file overrides profile content and may supply UI labels:
+
+```yaml
+lang: es
+og_locale: es_ES
+locale_label: Español
+title: Página de enlaces
+name: Ejemplo
+ui:
+  language_switcher: Idioma
+  primary_links: Enlaces principales
+```
+
+Locale hashes merge with `config.yml`; locale arrays such as `links` and
+`socials` replace their base values. Builds create `/<locale>/` directories
+and a root redirect page. Without `i18n`, the existing single-page output is
+unchanged. See [`examples/i18n`](./examples/i18n) for a complete generic
+configuration.
+
 ### Automatic redeployment
 
 The site rebuilds automatically once a day so plugin output (star counts, latest posts, etc.) stays fresh. The cron lives in [`build.yml`](../../actions/workflows/build.yml):

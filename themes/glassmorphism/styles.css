@@ -11,6 +11,14 @@
   --glass-shadow: 0 8px 32px rgba(13, 31, 45, 0.08);
   --hover-bg: rgba(255, 255, 255, 0.75);
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --language-switcher-bg: var(--glass-bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--glass-border);
+  --language-switcher-hover: var(--hover-bg);
+  --language-switcher-active-bg: var(--fg);
+  --language-switcher-active-fg: var(--bg-1);
+  --language-switcher-focus: var(--fg);
+  --language-switcher-shadow: var(--glass-shadow);
 }
 
 /* Dark mode. Auto-switches via system appearance unless pinned via

@@ -1,0 +1,39 @@
+lang: en
+og_locale: en_US
+locale_label: English
+
+title: Example Link Page
+avatar: "./images/profile.jpeg"
+name: Example Person
+tagline: A generic multi-language link page.
+
+links:
+  - link:
+      icon: "fa-solid fa-link"
+      text: "Example link"
+      url: "https://example.com/"
+      alt: "Example link"
+      title: "Example link"
+      target: "_blank"
+
+socials: []
+footer: Example footer.
+copyright: "© {{ year }} Example Person."
+
+ui:
+  language_switcher: Language
+  profile_picture: Profile picture
+  primary_links: Primary links
+  latest: LATEST
+  new: New
+  terminal_latest: "[NEW]"
+  selected_works: Selected Works & Channels
+  elsewhere: Elsewhere
+  personal_edition: The Personal Edition
+  terminal_links: "$ ls ./links/"
+  terminal_socials: "$ cat ./socials"
+  terminal_footer: "$ tail -n 1 ./footer"
+  newsprint_volume: "VOL. {{ year }} · LINKS"
+  newsprint_links: "01 / Links"
+  newsprint_connect: "02 / Connect"
+  entries: ENTRIES

@@ -66,7 +66,13 @@ build_site() {
 
 shoot() {
   local scheme="$1" out="$2"
-  local url="file://$ROOT/_output/index.html"
+  local page="$ROOT/_output/index.html"
+  local default_locale
+  default_locale="$(sed -n 's/.*data-default-locale="\([^"]*\)".*/\1/p' "$page" | head -n 1)"
+  if [ -n "$default_locale" ] && [ -f "$ROOT/_output/$default_locale/index.html" ]; then
+    page="$ROOT/_output/$default_locale/index.html"
+  fi
+  local url="file://$page"
   npx --yes playwright screenshot \
     --browser=chromium \
     --color-scheme="$scheme" \

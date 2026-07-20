@@ -8,6 +8,14 @@
   --radius: 0px;
   --mono: 'SFMono-Regular', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --language-switcher-bg: var(--bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--rule);
+  --language-switcher-hover: var(--hover);
+  --language-switcher-active-bg: var(--accent);
+  --language-switcher-active-fg: var(--bg);
+  --language-switcher-focus: var(--accent);
+  --language-switcher-shadow: none;
 }
 
 /* Dark mode. By default auto-switches via system appearance, but the user
