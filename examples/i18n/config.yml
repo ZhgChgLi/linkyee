@@ -1,0 +1,9 @@
+theme: default
+color_scheme: auto
+plugins: []
+
+i18n:
+  default_locale: en
+  locales:
+    en: examples/i18n/locales/demo-en.yml
+    es: examples/i18n/locales/demo-es.yml

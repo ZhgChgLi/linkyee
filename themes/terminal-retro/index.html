@@ -12,7 +12,7 @@
 
   <meta property="og:title" content="{{ title }}" />
   <meta name="author" content="{{ name }}" />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content="{{ og_locale | default: 'en_US' }}" />
   <meta name="description" content="{{ tagline }}" />
   <meta property="og:description" content="{{ tagline }}" />
   <meta property="og:site_name" content="{{ title }}" />
@@ -29,8 +29,21 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="./styles.css?v={{ last_modified_at }}" />
+  {% if i18n_enabled %}
+    {% for option in language_options %}
+      <link rel="alternate" hreflang="{{ option.code }}" href="../{{ option.code }}/" />
+    {% endfor %}
+    <link rel="stylesheet" href="./i18n.css?v={{ last_modified_at }}" />
+  {% endif %}
 </head>
 <body>
+  {% if i18n_enabled %}
+    <nav class="language-switcher" aria-label="{{ ui.language_switcher | default: 'Language' }}">
+      {% for option in language_options %}
+        <a href="../{{ option.code }}/" data-locale="{{ option.code }}"{% if option.code == locale %} aria-current="page"{% endif %}>{{ option.label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
   <div class="scanlines" aria-hidden="true"></div>
 
   <main class="container">
@@ -44,25 +57,25 @@
       <div class="window-body">
         <header class="profile">
           <pre class="prompt">$ whoami</pre>
-          <img src="{{ avatar }}" alt="Profile Picture" class="profile-pic" />
+          <img src="{{ avatar }}" alt="{{ ui.profile_picture | default: 'Profile Picture' }}" class="profile-pic" />
           <h1 class="name">{{ name }}<span class="caret" aria-hidden="true">&#9608;</span></h1>
           <p class="description">{{ tagline }}</p>
         </header>
 
-        <pre class="prompt">$ ls ./links/</pre>
-        <nav class="links" aria-label="Primary links">
+        <pre class="prompt">{{ ui.terminal_links | default: '$ ls ./links/' }}</pre>
+        <nav class="links" aria-label="{{ ui.primary_links | default: 'Primary links' }}">
           {% for item in links %}
             {% assign link = item.link %}
             <a href="{{ link.url }}" target="{{ link.target }}" class="link-button{% if link.latest %} link-latest{% endif %}" alt="{{ link.alt }}" title="{{ link.title }}">
               <span class="link-prefix" aria-hidden="true">&gt;</span>
               <span class="link-icon" aria-hidden="true"><i class="{{ link.icon }}"></i></span>
-              {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">[NEW]</span>{% endif %}
+              {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">{{ ui.terminal_latest | default: '[NEW]' }}</span>{% endif %}
               <span class="link-text">{{ link.text }}</span>
             </a>
           {% endfor %}
         </nav>
 
-        <pre class="prompt">$ cat ./socials</pre>
+        <pre class="prompt">{{ ui.terminal_socials | default: '$ cat ./socials' }}</pre>
         <div class="button-container">
           <div class="button-group">
             {% for item in socials %}
@@ -75,7 +88,7 @@
         </div>
 
         <footer class="footer">
-          <pre class="prompt">$ tail -n 1 ./footer</pre>
+          <pre class="prompt">{{ ui.terminal_footer | default: '$ tail -n 1 ./footer' }}</pre>
           {{ footer }}
           <div class="copyright">{{ copyright }}</div>
         </footer>
@@ -93,5 +106,6 @@
     </script>
   {% endif %}
   <script src="./scripts.js?v={{ last_modified_at }}"></script>
+  {% if i18n_enabled %}<script src="./i18n.js?v={{ last_modified_at }}"></script>{% endif %}
 </body>
 </html>

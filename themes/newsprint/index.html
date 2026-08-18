@@ -13,7 +13,7 @@
 
   <meta property="og:title" content="{{ title }}" />
   <meta name="author" content="{{ name }}" />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content="{{ og_locale | default: 'en_US' }}" />
   <meta name="description" content="{{ tagline }}" />
   <meta property="og:description" content="{{ tagline }}" />
   <meta property="og:site_name" content="{{ title }}" />
@@ -36,12 +36,25 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="./styles.css?v={{ last_modified_at }}" />
+  {% if i18n_enabled %}
+    {% for option in language_options %}
+      <link rel="alternate" hreflang="{{ option.code }}" href="../{{ option.code }}/" />
+    {% endfor %}
+    <link rel="stylesheet" href="./i18n.css?v={{ last_modified_at }}" />
+  {% endif %}
 </head>
 <body>
+  {% if i18n_enabled %}
+    <nav class="language-switcher" aria-label="{{ ui.language_switcher | default: 'Language' }}">
+      {% for option in language_options %}
+        <a href="../{{ option.code }}/" data-locale="{{ option.code }}"{% if option.code == locale %} aria-current="page"{% endif %}>{{ option.label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
   <main class="page">
     <header class="masthead">
       <div class="masthead-meta mono">
-        <span>VOL. {{ year }} · LINKS</span>
+        <span>{{ ui.newsprint_volume | default: 'VOL. ' | append: year | append: ' · LINKS' }}</span>
         <span>{{ today }}</span>
       </div>
       <div class="masthead-head">
@@ -56,8 +69,8 @@
     {% assign link_count = links | size %}
     <section class="section">
       <div class="section-head">
-        <h2 class="section-label mono">01 / Links</h2>
-        <span class="section-count mono">{{ link_count }} ENTRIES</span>
+        <h2 class="section-label mono">{{ ui.newsprint_links | default: '01 / Links' }}</h2>
+        <span class="section-count mono">{{ link_count }} {{ ui.entries | default: 'ENTRIES' }}</span>
       </div>
       <div class="links">
         {% for item in links %}
@@ -67,7 +80,7 @@
             <div class="link-row-body">
               <div class="link-row-title">
                 <i class="{{ link.icon }}"></i>
-                <span>{% if link.latest %}<span class="link-latest-badge mono">NEW</span>{% endif %}{{ link.text }}</span>
+                <span>{% if link.latest %}<span class="link-latest-badge mono">{{ ui.new | default: 'NEW' }}</span>{% endif %}{{ link.text }}</span>
               </div>
             </div>
             <span class="link-row-arrow">&rarr;</span>
@@ -79,8 +92,8 @@
     {% assign social_count = socials | size %}
     <section class="section">
       <div class="section-head">
-        <h2 class="section-label mono">02 / Connect</h2>
-        <span class="section-count mono">{{ social_count }} ENTRIES</span>
+        <h2 class="section-label mono">{{ ui.newsprint_connect | default: '02 / Connect' }}</h2>
+        <span class="section-count mono">{{ social_count }} {{ ui.entries | default: 'ENTRIES' }}</span>
       </div>
       <div class="socials">
         {% for item in socials %}
@@ -105,6 +118,7 @@
   </main>
 
   <script src="./scripts.js?v={{ last_modified_at }}"></script>
+  {% if i18n_enabled %}<script src="./i18n.js?v={{ last_modified_at }}"></script>{% endif %}
   {% if google_analytics_id %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
     <script>

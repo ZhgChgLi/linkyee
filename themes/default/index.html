@@ -18,7 +18,7 @@
 
   <meta property="og:title" content="{{ title }}" />
   <meta name="author" content="{{ name }}" />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content="{{ og_locale | default: 'en_US' }}" />
   <meta name="description" content="{{ tagline }}" />
   <meta property="og:description" content="{{ tagline }}" />
   <meta property="og:site_name" content="{{ title }}" />
@@ -42,20 +42,33 @@
 
   <link rel="stylesheet" href="./fontawesome/css/all.min.css?v={{ last_modified_at }}" />
   <link rel="stylesheet" href="./styles.css?v={{ last_modified_at }}" />
+  {% if i18n_enabled %}
+    {% for option in language_options %}
+      <link rel="alternate" hreflang="{{ option.code }}" href="../{{ option.code }}/" />
+    {% endfor %}
+    <link rel="stylesheet" href="./i18n.css?v={{ last_modified_at }}" />
+  {% endif %}
 </head>
 <body>
+  {% if i18n_enabled %}
+    <nav class="language-switcher" aria-label="{{ ui.language_switcher | default: 'Language' }}">
+      {% for option in language_options %}
+        <a href="../{{ option.code }}/" data-locale="{{ option.code }}"{% if option.code == locale %} aria-current="page"{% endif %}>{{ option.label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
   <div class="container">
     <div class="profile">
-      <img src="{{ avatar }}" alt="Profile Picture" class="profile-pic" />
+      <img src="{{ avatar }}" alt="{{ ui.profile_picture | default: 'Profile Picture' }}" class="profile-pic" />
       <h1 class="name">{{ name }}</h1>
       <p class="description">{{ tagline }}</p>
     </div>
 
-    <div class="links">
+    <div class="links" aria-label="{{ ui.primary_links | default: 'Primary links' }}">
       {% for item in links %}
         {% assign link = item.link %}
         <a href="{{ link.url }}" target="{{ link.target }}" class="link-button{% if link.latest %} link-latest{% endif %}" alt="{{ link.alt }}" title="{{ link.title }}">
-          {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">LATEST</span>{% endif %}
+          {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">{{ ui.latest | default: 'LATEST' }}</span>{% endif %}
           <i class="{{ link.icon }}"></i> <span class="link-text">{{ link.text }}</span>
         </a>
       {% endfor %}
@@ -90,5 +103,6 @@
     </script>
   {% endif %}
   <script src="./scripts.js?v={{ last_modified_at }}"></script>
+  {% if i18n_enabled %}<script src="./i18n.js?v={{ last_modified_at }}"></script>{% endif %}
 </body>
 </html>

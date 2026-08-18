@@ -1,0 +1,62 @@
+.language-switcher {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 200;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-inline-size: calc(100vw - 16px);
+  min-height: 44px;
+  padding: 3px;
+  border: 1px solid var(--language-switcher-border, color-mix(in srgb, CanvasText 25%, transparent));
+  border-radius: 999px;
+  background: var(--language-switcher-bg, Canvas);
+  box-shadow: var(--language-switcher-shadow, 0 5px 18px rgb(0 0 0 / 18%));
+  color: var(--language-switcher-fg, CanvasText);
+  isolation: isolate;
+}
+
+.language-switcher a {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: var(--language-switcher-fg, CanvasText);
+  font: 700 11px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.language-switcher a:hover,
+.language-switcher a:focus-visible {
+  background: var(--language-switcher-hover, color-mix(in srgb, CanvasText 14%, transparent));
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.language-switcher a:focus-visible {
+  box-shadow: 0 0 0 2px var(--language-switcher-bg, Canvas), 0 0 0 4px var(--language-switcher-focus, CanvasText);
+}
+
+.language-switcher a[aria-current="page"] {
+  background: var(--language-switcher-active-bg, CanvasText);
+  color: var(--language-switcher-active-fg, Canvas);
+}
+
+@media (max-width: 480px) {
+  .language-switcher {
+    top: max(8px, env(safe-area-inset-top));
+    right: max(8px, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-switcher a {
+    transition: none;
+  }
+}

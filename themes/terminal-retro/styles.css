@@ -20,6 +20,14 @@
   --scanline-blend: multiply;
   --scanline-color: rgba(0, 0, 0, 0.18);
   --mono: 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+  --language-switcher-bg: var(--window-bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--rule);
+  --language-switcher-hover: var(--hover);
+  --language-switcher-active-bg: var(--accent);
+  --language-switcher-active-fg: var(--bg);
+  --language-switcher-focus: var(--accent);
+  --language-switcher-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
 }
 
 /* Light variant — printer-paper cream with deep-olive ink and

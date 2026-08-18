@@ -1,0 +1,39 @@
+lang: es
+og_locale: es_ES
+locale_label: Español
+
+title: Página de enlaces de ejemplo
+avatar: "./images/profile.jpeg"
+name: Persona de ejemplo
+tagline: Una página de enlaces genérica en varios idiomas.
+
+links:
+  - link:
+      icon: "fa-solid fa-link"
+      text: "Enlace de ejemplo"
+      url: "https://example.com/"
+      alt: "Enlace de ejemplo"
+      title: "Enlace de ejemplo"
+      target: "_blank"
+
+socials: []
+footer: Pie de página de ejemplo.
+copyright: "© {{ year }} Persona de ejemplo."
+
+ui:
+  language_switcher: Idioma
+  profile_picture: Foto de perfil
+  primary_links: Enlaces principales
+  latest: RECIENTE
+  new: Nuevo
+  terminal_latest: "[NUEVO]"
+  selected_works: Trabajos y canales destacados
+  elsewhere: Otros enlaces
+  personal_edition: La edición personal
+  terminal_links: "$ ls ./enlaces/"
+  terminal_socials: "$ cat ./sociales"
+  terminal_footer: "$ tail -n 1 ./pie"
+  newsprint_volume: "VOL. {{ year }} · ENLACES"
+  newsprint_links: "01 / Enlaces"
+  newsprint_connect: "02 / Contacto"
+  entries: ENTRADAS

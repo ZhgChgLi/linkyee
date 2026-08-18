@@ -11,6 +11,14 @@
   --c5: #c77dff;
   --sans: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
   --display: 'Archivo Black', 'Space Grotesk', 'Inter', sans-serif;
+  --language-switcher-bg: var(--card);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--shadow);
+  --language-switcher-hover: var(--c2);
+  --language-switcher-active-bg: var(--c1);
+  --language-switcher-active-fg: #000000;
+  --language-switcher-focus: var(--shadow);
+  --language-switcher-shadow: 4px 4px 0 var(--shadow);
 }
 
 /* Dark mode. Auto-switches via system appearance unless pinned via

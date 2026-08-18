@@ -1,4 +1,15 @@
 /* Reset default styles */
+:root {
+  --language-switcher-bg: #ffffff;
+  --language-switcher-fg: #000000;
+  --language-switcher-border: #d0d7de;
+  --language-switcher-hover: #f0f0f0;
+  --language-switcher-active-bg: #1f6feb;
+  --language-switcher-active-fg: #ffffff;
+  --language-switcher-focus: #1f6feb;
+  --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 12%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -139,6 +150,16 @@ a {
    Each rule's selector is prefixed with :root:not(.scheme-light) so the
    forced-light class neutralises the entire block. */
 @media (prefers-color-scheme: dark) {
+  :root:not(.scheme-light) {
+    --language-switcher-bg: #161b22;
+    --language-switcher-fg: #e6edf3;
+    --language-switcher-border: #30363d;
+    --language-switcher-hover: #21262d;
+    --language-switcher-active-bg: #58a6ff;
+    --language-switcher-active-fg: #0d1117;
+    --language-switcher-focus: #58a6ff;
+    --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 32%);
+  }
   :root:not(.scheme-light) body            { background-color: #0d1117; color: #e6edf3; }
   :root:not(.scheme-light) a               { color: #e6edf3; }
   :root:not(.scheme-light) .profile-pic    { border-color: #30363d; }
@@ -151,6 +172,16 @@ a {
   :root:not(.scheme-light) .link-button-text { color: #7d8590; }
 }
 /* `color_scheme: dark` — force the same dark palette regardless of OS. */
+:root.scheme-dark {
+  --language-switcher-bg: #161b22;
+  --language-switcher-fg: #e6edf3;
+  --language-switcher-border: #30363d;
+  --language-switcher-hover: #21262d;
+  --language-switcher-active-bg: #58a6ff;
+  --language-switcher-active-fg: #0d1117;
+  --language-switcher-focus: #58a6ff;
+  --language-switcher-shadow: 0 5px 18px rgb(0 0 0 / 32%);
+}
 :root.scheme-dark body            { background-color: #0d1117; color: #e6edf3; }
 :root.scheme-dark a               { color: #e6edf3; }
 :root.scheme-dark .profile-pic    { border-color: #30363d; }

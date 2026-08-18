@@ -86,6 +86,37 @@ copyright: "© 2026 You."
 
 repo 內附的 [`config.yml`](./config.yml) 是一個跑得起來的完整範例，**每個內建 plugin 都用到了** — 把它當成正式參考文件。直接改欄位、push、等 GitHub Actions 重新 build 完、瀏覽器重整就好。
 
+### 多語系網站
+
+設定 `i18n` 後，網站會為每個語系產生一份靜態頁面。根目錄會優先使用儲存的
+選擇或瀏覽器語言，沒有匹配時改用 `default_locale`。
+
+```yaml
+i18n:
+  default_locale: en
+  locales:
+    en: locales/en.yml
+    es: locales/es.yml
+```
+
+每個語系檔可覆寫個人內容與 UI 文字：
+
+```yaml
+lang: es
+og_locale: es_ES
+locale_label: Español
+title: Página de enlaces
+name: Ejemplo
+ui:
+  language_switcher: Idioma
+  primary_links: Enlaces principales
+```
+
+locale 的 hash 欄位會與 `config.yml` 合併，`links`、`socials` 等 array
+欄位則會整份取代基礎設定。build 後會產生 `/<locale>/` 目錄與根目錄轉址頁；
+未設定 `i18n` 時，既有的單頁輸出不受影響。完整的通用範例請見
+[`examples/i18n`](./examples/i18n)。
+
 ### 自動重新部署
 
 網站每天會自動重新 build 一次，讓 plugin 的輸出（star 數、最新文章…）保持最新。cron 設定寫在 [`build.yml`](../../actions/workflows/build.yml)：
