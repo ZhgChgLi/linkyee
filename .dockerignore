@@ -1,0 +1,7 @@
+.git
+.github
+.claude
+_output
+.linkyee-cache
+.env
+.DS_Store

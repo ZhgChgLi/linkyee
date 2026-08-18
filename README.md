@@ -293,6 +293,24 @@ If a build fails (e.g. a broken Liquid reference), the watcher prints the error 
 - Ruby (`bundle install` once to fetch `liquid` and `nokogiri`)
 - Python 3 (or Ruby) for the static file server `preview.sh` spawns
 
+## Container deployment
+
+Build and run the generated site with Docker Compose:
+
+```bash
+docker compose up -d --build
+```
+
+The service listens on port `8080` by default. Override it with `PORT`, and
+set `REBUILD_INTERVAL` in seconds when plugin data should be refreshed:
+
+```bash
+PORT=8081 REBUILD_INTERVAL=3600 docker compose up -d --build
+```
+
+The image contains the application source. A named Docker volume persists
+plugin cache data, while the generated output remains inside the container.
+
 ---
 
 ## Custom Domain ❤️❤️❤️
