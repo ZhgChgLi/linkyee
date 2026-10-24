@@ -1,0 +1,275 @@
+:root {
+  --bg-1: #e6f3ee;
+  --bg-2: #fde9d9;
+  --shape-1: #6dd3b8;
+  --shape-2: #ffb380;
+  --shape-3: #84b9ef;
+  --fg: #0d1f2d;
+  --muted: #4a5d6e;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-shadow: 0 8px 32px rgba(13, 31, 45, 0.08);
+  --hover-bg: rgba(255, 255, 255, 0.75);
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --language-switcher-bg: var(--glass-bg);
+  --language-switcher-fg: var(--fg);
+  --language-switcher-border: var(--glass-border);
+  --language-switcher-hover: var(--hover-bg);
+  --language-switcher-active-bg: var(--fg);
+  --language-switcher-active-fg: var(--bg-1);
+  --language-switcher-focus: var(--fg);
+  --language-switcher-shadow: var(--glass-shadow);
+}
+
+/* Dark mode. Auto-switches via system appearance unless pinned via
+   `color_scheme: light|dark` in config.yml.
+   On dark, "frosted glass" becomes tinted-glass-on-deep-blue rather than a
+   simple invert. Ambient shapes desaturate so they feel like aurora rather
+   than pastel; glass cards become cooler and more translucent. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.scheme-light) {
+    --bg-1: #0c1820;
+    --bg-2: #1a2030;
+    --shape-1: #2d8068;
+    --shape-2: #c9744a;
+    --shape-3: #4a6b9c;
+    --fg: #f0f4f8;
+    --muted: #a3b3c2;
+    --glass-bg: rgba(20, 32, 44, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --hover-bg: rgba(30, 44, 58, 0.75);
+  }
+}
+:root.scheme-dark {
+  --bg-1: #0c1820;
+  --bg-2: #1a2030;
+  --shape-1: #2d8068;
+  --shape-2: #c9744a;
+  --shape-3: #4a6b9c;
+  --fg: #f0f4f8;
+  --muted: #a3b3c2;
+  --glass-bg: rgba(20, 32, 44, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --hover-bg: rgba(30, 44, 58, 0.75);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 20px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.bg-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.bg-shape-1 { width: 380px; height: 380px; background: var(--shape-1); top: -80px; left: -100px; }
+.bg-shape-2 { width: 320px; height: 320px; background: var(--shape-2); bottom: 10%; right: -80px; }
+.bg-shape-3 { width: 280px; height: 280px; background: var(--shape-3); top: 40%; left: 30%; }
+
+.container {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  box-shadow: var(--glass-shadow);
+}
+
+.profile-card {
+  padding: 32px 24px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 16px;
+  display: block;
+  border: 2px solid var(--glass-border);
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 15px;
+  color: var(--muted);
+  text-wrap: pretty;
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.link-button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--fg);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link-button:hover,
+.link-button:focus-visible {
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(13, 31, 45, 0.14);
+  outline: none;
+}
+
+.link-icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--hover-bg);
+  flex-shrink: 0;
+}
+
+.link-icon i { font-size: 14px; }
+.link-text { flex: 1; }
+.link-button-text { font-size: 13px; color: var(--muted); margin-left: 6px; }
+
+.button-container { padding: 16px; display: flex; justify-content: center; }
+
+.button-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--fg);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.icon-button i { font-size: 17px; }
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.footer {
+  margin-top: 28px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer a { color: var(--fg); border-bottom: 1px solid var(--muted); }
+.copyright { margin-top: 8px; font-size: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .card { background: rgba(255, 255, 255, 0.85); }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.scheme-light) .card { background: rgba(20, 32, 44, 0.85); }
+  }
+  :root.scheme-dark .card { background: rgba(20, 32, 44, 0.85); }
+}
+
+/* "Latest" link variant — frosted accent ring + glowing pill badge */
+.link-button.link-latest {
+  align-items: flex-start;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px rgba(123, 97, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.link-latest-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 3px 9px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7b61ff 0%, #38c5ff 100%);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  vertical-align: 1px;
+}
+.link-latest .link-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+          line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+/* Dark-mode override for the latest variant: the bright glass border
+   designed for the light gradient becomes harsh on deep blue, so soften
+   it and shift the glow to a cooler hue. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.scheme-light) .link-button.link-latest {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(56, 197, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+}
+:root.scheme-dark .link-button.link-latest {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(56, 197, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
