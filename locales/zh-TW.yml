@@ -1,0 +1,6 @@
+# Traditional Chinese (Taiwan) translations for the public link page.
+# Referenced as {{ i18n.key }} from Liquid themes.
+profile_picture: "個人頭像"
+primary_links: "主要連結"
+latest: "最新"
+social_links: "社群連結"
