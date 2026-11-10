@@ -34,7 +34,15 @@ def main():
     safe, skipped = [], []
     for i in range(0, len(entries), 2):
         status, path = entries[i:i+2]
-        if excluded(path):
+        # Never overwrite a path separately customized on website, even if
+        # it isn't on the explicit protected-path list.
+        website_changed = git(
+            "diff", "--quiet", ancestor, "origin/website", "--", path,
+            check=False
+        )
+        if website_changed.returncode not in (0, 1):
+            raise RuntimeError("Unable to inspect website changes: " + path)
+        if excluded(path) or website_changed.returncode == 1:
             skipped.append(path)
         else:
             safe.append((status, path))
@@ -44,7 +52,8 @@ def main():
             git("rm", "-f", "--ignore-unmatch", "--", path)
         else:
             git("restore", "--source=origin/main", "--staged", "--worktree", "--", path)
-        git("add", "-A", "--", path)
+        if status != "D":
+            git("add", "-A", "--", path)
     result = git("diff", "--cached", "--quiet", check=False)
     if result.returncode not in (0, 1):
         raise RuntimeError("Unable to inspect staged changes")
