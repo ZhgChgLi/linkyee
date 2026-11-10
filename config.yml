@@ -12,7 +12,7 @@
 theme: glassmorphism
 
 # HTML <html lang> attribute
-lang: "en"
+lang: "zh-TW"
 
 # Force a color scheme regardless of the visitor's system appearance:
 #   auto  — follow OS (default; the page auto-switches between light/dark)
@@ -80,12 +80,12 @@ google_analytics_id:
 # -----------------------------------------------------------------------------
 # Profile header
 # -----------------------------------------------------------------------------
-title: "ZhgChgLi's Links"
+title: "ZhgChgLi 的連結頁"
 avatar: "./images/profile.jpeg"
 name: "@zhgchgli"
 tagline: >-
-    An iOS, web, and automation developer from Taiwan 🇹🇼 who also loves sharing, traveling, and writing.
-    Followed by {{ vars.GithubProfilePlugin['ZhgChgLi'].followers }} on GitHub across {{ vars.GithubProfilePlugin['ZhgChgLi'].repos }} public repos.
+    來自台灣 🇹🇼 的 iOS、網頁與自動化開發者，喜歡分享、旅行與寫作。
+    GitHub 目前有 {{ vars.GithubProfilePlugin['ZhgChgLi'].followers }} 位追蹤者，以及 {{ vars.GithubProfilePlugin['ZhgChgLi'].repos }} 個公開儲存庫。
 
 # -----------------------------------------------------------------------------
 # Links
@@ -99,16 +99,16 @@ tagline: >-
 links:
   - link:
       icon: "fa-solid fa-rss"
-      text: "Tech Blog <span class='link-button-text'>(120+ Posts)</span>"
+      text: "技術部落格 <span class='link-button-text'>（120 多篇文章）</span>"
       url: "https://zhgchg.li"
-      alt: "ZhgChgLi Tech & Travel Blog"
+      alt: "ZhgChgLi 技術與旅行部落格"
       title: "ZhgChgLi Tech & Travel Blog"
       target: "_blank"
 
   # → uses GithubRepoStarsCountPlugin
   - link:
       icon: "fa-brands fa-swift"
-      text: "ZMarkupParser <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['ZhgChgLi/ZMarkupParser']}} Stars)</span>"
+      text: "ZMarkupParser <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['ZhgChgLi/ZMarkupParser']}} 顆星）</span>"
       url: "https://github.com/ZhgChgLi/ZMarkupParser"
       alt: "ZMarkupParser is a pure-Swift library that helps you to convert HTML strings to NSAttributedString with customized style and tags."
       title: "ZMarkupParser is a pure-Swift library that helps you to convert HTML strings to NSAttributedString with customized style and tags."
@@ -117,7 +117,7 @@ links:
       icon: "fa-brands fa-app-store-ios"
       text: "ZReviewTender <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['ZhgChgLi/ZReviewTender']}} Stars)</span>"
       url: "https://github.com/ZhgChgLi/ZReviewTender"
-      alt: "ZReviewTender is a tool for fetching app reviews from the App Store and Google Play Console and integrating them into your workflow."
+      alt: "ZReviewTender 可擷取 App Store 與 Google Play Console 的應用程式評論並整合到工作流程。"
       title: "ZReviewTender is a tool for fetching app reviews from the App Store and Google Play Console and integrating them into your workflow."
       target: "_blank"
   - link:
@@ -131,7 +131,7 @@ links:
   # → uses GithubRepoStarsCountPlugin + GithubLastCommitPlugin
   - link:
       icon: "fa-brands fa-github"
-      text: "linkyee <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['ZhgChgLi/linkyee']}} ⭐ · last update {{ vars.GithubLastCommitPlugin['ZhgChgLi/linkyee'].date }})</span>"
+      text: "linkyee <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['ZhgChgLi/linkyee']}} ⭐ · 最後更新 {{ vars.GithubLastCommitPlugin['ZhgChgLi/linkyee'].date }})</span>"
       url: "https://github.com/ZhgChgLi/linkyee"
       alt: "linkyee is a fully customized, open-source LinkTree alternative deployed directly on GitHub Pages."
       title: "linkyee is a fully customized, open-source LinkTree alternative deployed directly on GitHub Pages."
@@ -143,8 +143,8 @@ links:
       icon: "fa-solid fa-newspaper"
       text: "{{ vars.RSSFeedPlugin['https://en.zhgchg.li/feed.xml'][0].title }}"
       url: "{{ vars.RSSFeedPlugin['https://en.zhgchg.li/feed.xml'][0].url }}"
-      alt: "Latest blog post by ZhgChgLi"
-      title: "Latest blog post"
+      alt: "ZhgChgLi 的最新部落格文章"
+      title: "最新部落格文章"
       target: "_blank"
       latest: true
 
@@ -153,7 +153,7 @@ links:
       icon: "fa-brands fa-youtube"
       text: "{{ vars.YouTubeChannelLatestVideoPlugin['@zhgchgli'].title }}"
       url: "{{ vars.YouTubeChannelLatestVideoPlugin['@zhgchgli'].url }}"
-      alt: "Latest YouTube video"
+      alt: "最新 YouTube 影片"
       title: "Latest YouTube video"
       target: "_blank"
       latest: true
@@ -165,25 +165,25 @@ socials:
   - social:
       icon: "fa-brands fa-medium"
       url: "https://blog.zhgchg.li"
-      title: "ZhgChgLi's Medium"
+      title: "ZhgChgLi 的 Medium"
       alt: "ZhgChgLi's Medium"
       target: "_blank"
   - social:
       icon: "fa-brands fa-github"
       url: "https://github.com/ZhgChgLi"
-      title: "ZhgChgLi's GitHub"
+      title: "ZhgChgLi 的 GitHub"
       alt: "ZhgChgLi's GitHub"
       target: "_blank"
   - social:
       icon: "fa-brands fa-twitter"
       url: "https://twitter.com/zhgchgli"
-      title: "ZhgChgLi's Twitter"
+      title: "ZhgChgLi 的 Twitter"
       alt: "ZhgChgLi's Twitter"
       target: "_blank"
   - social:
       icon: "fa-brands fa-linkedin"
       url: "https://www.linkedin.com/in/zhgchgli/"
-      title: "ZhgChgLi's LinkedIn"
+      title: "ZhgChgLi 的 LinkedIn"
       alt: "ZhgChgLi's LinkedIn"
       target: "_blank"
   - social:
@@ -203,10 +203,10 @@ socials:
 # Footer (uses CountdownPlugin)
 # -----------------------------------------------------------------------------
 footer: >
-    Hi there! Follow me on Medium or GitHub, or stay connected on Instagram or LinkedIn.
-    <br>linkyee has been live for {{ vars.CountdownPlugin.linkyee_release.days }} days. 🎉
+    歡迎來到我的連結頁！你可以在 Medium、GitHub、Instagram 或 LinkedIn 與我保持聯繫。
+    <br>linkyee 已上線 {{ vars.CountdownPlugin.linkyee_release.days }} 天。🎉
 
 # Footer copyright message
 # Linkyee is a 100% free, open-source project—feel free to modify the copyright message as you like. :)
 copyright: >
-  © {{ year }} <a href="https://link.zhgchg.li" target="_blank">ZhgChgLi</a>. Powered by <a href="https://github.com/ZhgChgLi/linkyee" target="_blank">linkyee</a>
+  © {{ year }} <a href="https://link.zhgchg.li" target="_blank">ZhgChgLi</a>. 由 <a href="https://github.com/ZhgChgLi/linkyee" target="_blank">linkyee</a>
