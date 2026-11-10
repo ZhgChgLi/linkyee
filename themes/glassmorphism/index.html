@@ -13,7 +13,7 @@
 
   <meta property="og:title" content="{{ title }}" />
   <meta name="author" content="{{ name }}" />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content="{% if lang == 'zh-TW' %}zh_TW{% else %}{{ lang | replace: '-', '_' }}{% endif %}" />
   <meta name="description" content="{{ tagline }}" />
   <meta property="og:description" content="{{ tagline }}" />
   <meta property="og:site_name" content="{{ title }}" />
@@ -38,23 +38,23 @@
 
   <main class="container">
     <section class="card profile-card">
-      <img src="{{ avatar }}" alt="Profile Picture" class="profile-pic" />
+      <img src="{{ avatar }}" alt="{{ i18n.profile_picture }}" class="profile-pic" />
       <h1 class="name">{{ name }}</h1>
       <p class="description">{{ tagline }}</p>
     </section>
 
-    <nav class="links" aria-label="Primary links">
+    <nav class="links" aria-label="{{ i18n.primary_links }}">
       {% for item in links %}
         {% assign link = item.link %}
         <a href="{{ link.url }}" target="{{ link.target }}" class="card link-button{% if link.latest %} link-latest{% endif %}" alt="{{ link.alt }}" title="{{ link.title }}">
-          {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">LATEST</span>{% endif %}
+          {% if link.latest %}<span class="link-latest-badge" aria-hidden="true">{{ i18n.latest }}</span>{% endif %}
           <span class="link-icon" aria-hidden="true"><i class="{{ link.icon }}"></i></span>
           <span class="link-text">{{ link.text }}</span>
         </a>
       {% endfor %}
     </nav>
 
-    <div class="card button-container">
+    <div class="card button-container" aria-label="{{ i18n.social_links }}">
       <div class="button-group">
         {% for item in socials %}
           {% assign social = item.social %}
