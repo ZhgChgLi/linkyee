@@ -52,4 +52,11 @@ jobs:
             git push origin HEAD:gh-pages
           fi
       - name: Show preview URL
-        run: echo "Preview URL https://xvn5002036.github.io/linkyee/previews/update-test-2026-11/"
+        run: |
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          if [ "$repo_name" = "${GITHUB_REPOSITORY_OWNER}.github.io" ]; then
+            base_url="https://${GITHUB_REPOSITORY_OWNER}.github.io"
+          else
+            base_url="https://${GITHUB_REPOSITORY_OWNER}.github.io/$repo_name"
+          fi
+          echo "Preview URL $base_url/previews/update-test-2026-11/"
