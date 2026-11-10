@@ -22,6 +22,13 @@ def output(name, value):
 
 def main():
     git("fetch", "origin", "main", "website", "--prune")
+    # Fetch the current proposal head so a later force-with-lease push can
+    # safely refresh an existing PR without clobbering unexpected commits.
+    probe = git("ls-remote", "--exit-code", "--heads", "origin", BRANCH, check=False)
+    if probe.returncode == 0:
+        git("fetch", "origin", f"refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}")
+    elif probe.returncode != 2:
+        raise RuntimeError("Unable to check existing sync branch")
     ancestor = git("merge-base", "origin/main", "origin/website").stdout.strip()
     if not ancestor:
         raise RuntimeError("main and website have no common ancestor")
