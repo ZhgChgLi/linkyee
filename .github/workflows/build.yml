@@ -1,27 +1,48 @@
-name: 'Upstream source check'
-
-# main is reserved for updating the project code; it must never publish the
-# personal site. Only the separate website branch deploys to gh-pages.
+name: 'Deploy personal website'
 on:
   push:
     branches:
-      - main
+      - website
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+      - .claude/**
+      - plugins/README.md
+      - scripts/**
+      - seed-cache.rb
+      - preview.sh
+      - 'themes/**/preview-*.png'
   workflow_dispatch:
 
+# Website-only deployment. Push updates on website to build and publish gh-pages.
+# Trigger deployment after enabling fork workflows in GitHub.
+# Prevent racing pushes from overwriting each other on gh-pages.
+# `cancel-in-progress: false` lets every triggered build complete.
+concurrency:
+  group: pages-build
+  cancel-in-progress: false
+
+# Least-privilege token: only what `deploy.sh` needs to force-push to gh-pages.
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build-check:
+  continuous-delivery:
+    if: github.ref == 'refs/heads/website'
+
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.2
           bundler-cache: true
-      - name: Validate generated site (do not deploy)
-        run: bundle exec ruby ./scaffold.rb
+
+      - name: Deploy
+        run: bash deploy.sh
