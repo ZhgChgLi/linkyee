@@ -10,6 +10,20 @@ end
 # Permit Date/Time so users can write unquoted YAML dates (e.g. for CountdownPlugin).
 settings = YAML.load_file("config.yml", permitted_classes: [Date, Time, Symbol]) || {}
 
+# Load localized theme UI strings. The default English labels keep other
+# locales usable when a language-specific translation is missing.
+settings["i18n"] = {
+  "profile_picture" => "Profile Picture",
+  "primary_links" => "Primary links",
+  "latest" => "LATEST",
+  "social_links" => "Social links"
+}
+locale_path = File.join("locales", "#{settings["lang"] || "en"}.yml")
+if File.file?(locale_path)
+  localized_labels = YAML.load_file(locale_path)
+  settings["i18n"].merge!(localized_labels) if localized_labels.is_a?(Hash)
+end
+
 #
 source_dir = "./themes/#{settings["theme"] || "default"}"
 destination_dir = "./_output/"
