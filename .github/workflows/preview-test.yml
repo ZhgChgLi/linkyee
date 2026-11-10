@@ -1,0 +1,55 @@
+name: Preview test website (isolated)
+
+on:
+  push:
+    branches:
+      - update/test-2026-11
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-build
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/update/test-2026-11'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Build test site only
+        run: |
+          bundle exec ruby ./scaffold.rb
+          test -s _output/index.html
+      - name: Publish ONLY the preview subdirectory
+        env:
+          PREVIEW_PATH: previews/update-test-2026-11
+        run: |
+          set -euo pipefail
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git worktree add --detach /tmp/linkyee-preview-pages FETCH_HEAD
+          mkdir -p "/tmp/linkyee-preview-pages/$PREVIEW_PATH"
+          find "/tmp/linkyee-preview-pages/$PREVIEW_PATH" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+          cp -a _output/. "/tmp/linkyee-preview-pages/$PREVIEW_PATH/"
+          cd /tmp/linkyee-preview-pages
+          touch .nojekyll
+          git add -- "$PREVIEW_PATH" .nojekyll
+          if git diff --cached --quiet; then
+            echo "Preview already up-to-date"
+          else
+            git commit -m "Preview update/test-2026-11 (run $GITHUB_RUN_NUMBER)"
+            git push origin HEAD:gh-pages
+          fi
+      - name: Show preview URL
+        run: echo "Preview URL https://xvn5002036.github.io/linkyee/previews/update-test-2026-11/"
