@@ -1,47 +1,27 @@
-name: 'Automatic build'
+name: 'Upstream source check'
+
+# main is reserved for updating the project code; it must never publish the
+# personal site. Only the separate website branch deploys to gh-pages.
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - .gitignore
-      - README.md
-      - LICENSE
-      - .claude/**
-      - plugins/README.md
-      - scripts/**
-      - seed-cache.rb
-      - preview.sh
-      - 'themes/**/preview-*.png'
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight (00:00 UTC)
 
-# Prevent racing pushes from overwriting each other on gh-pages.
-# `cancel-in-progress: false` lets every triggered build complete.
-concurrency:
-  group: pages-build
-  cancel-in-progress: false
-
-# Least-privilege token: only what `deploy.sh` needs to force-push to gh-pages.
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  continuous-delivery:
-
+  build-check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.2
           bundler-cache: true
-
-      - name: Deploy
-        run: bash deploy.sh
+      - name: Validate generated site (do not deploy)
+        run: bundle exec ruby ./scaffold.rb
