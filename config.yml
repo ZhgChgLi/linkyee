@@ -20,8 +20,7 @@ lang: "en"
 #   dark  — always render dark mode
 # Note: dark-first themes (e.g. terminal-retro) ignore "light" — their
 # whole identity is the dark palette.
-color_scheme: auto
-
+color_scheme: dark
 # -----------------------------------------------------------------------------
 # Plugins — every built-in plugin is shown below as a working example.
 # Remove the ones you don't need. Output is referenced as {{ vars.PluginName }}.
