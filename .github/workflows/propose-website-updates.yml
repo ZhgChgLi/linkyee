@@ -1,0 +1,64 @@
+name: Propose safe updates to website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: propose-main-to-website
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main with branch history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Prepare protected update from main
+        id: prepare
+        run: python3 .github/scripts/prepare_website_update.py
+
+      - name: Install Ruby and Bundler dependencies
+        if: steps.prepare.outputs.changes == 'true'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+
+      - name: Verify proposed website still builds
+        if: steps.prepare.outputs.changes == 'true'
+        run: bundle exec ruby ./scaffold.rb
+
+      - name: Push review-only test branch
+        if: steps.prepare.outputs.changes == 'true'
+        run: git push --force-with-lease origin HEAD:refs/heads/sync/main-to-website
+
+      - name: Open or refresh review pull request
+        if: steps.prepare.outputs.changes == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing="$(gh pr list --state open --base website --head sync/main-to-website --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh pr edit "$existing" --body-file /tmp/linkyee-sync-pr.md
+            echo "Updated existing PR #$existing"
+          else
+            gh pr create --base website --head sync/main-to-website \
+              --title "Review main updates for website (custom settings protected)" \
+              --body-file /tmp/linkyee-sync-pr.md
+          fi
+
+      - name: Record no-op result
+        if: steps.prepare.outputs.changes == 'false'
+        run: echo "No unprotected changes found. Website stays unchanged."
